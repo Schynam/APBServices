@@ -6,6 +6,7 @@ import StatusBadge from '../components/StatusBadge';
 const Transport = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [hasPaid, setHasPaid] = useState(false);
+    const [actionMessage, setActionMessage] = useState('');
 
     const vehicleHistory = [
         { plate: 'ABC-123-XY', make: 'Toyota Camry', year: '2019', status: 'Active', exp: '2027-01-15' },
@@ -26,14 +27,26 @@ const Transport = () => {
         if (success) setHasPaid(true);
     };
 
+    const handleAction = (message) => {
+        setActionMessage(message);
+        setTimeout(() => setActionMessage(''), 3000);
+    };
+
     return (
         <div className="animate-fade-in">
-            <div className="mb-8" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div className="mb-8" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
                 <div>
-                    <h1 style={{ color: 'var(--primary)' }}>Transport Services (FRSC)</h1>
-                    <p>Manage your driver's license, vehicle registrations, and traffic fines.</p>
+                    <h1 style={{ color: 'var(--primary)', marginBottom: '0.5rem' }}>Transport Services (FRSC)</h1>
+                    <p style={{ color: 'var(--text-muted)' }}>Manage your driver's license, vehicle registrations, and traffic fines.</p>
                 </div>
+                <button className="btn btn-primary" onClick={() => handleAction('Opening Vehicle Registration Portal...')}>+ New Registration</button>
             </div>
+
+            {actionMessage && (
+                <div className="animate-fade-in" style={{ marginBottom: '2rem', padding: '0.75rem 1rem', background: 'rgba(21, 128, 61, 0.1)', color: 'var(--primary)', borderRadius: 'var(--radius-md)', border: '1px solid var(--primary)', fontSize: '0.9rem' }}>
+                    {actionMessage}
+                </div>
+            )}
 
             <div className="services-grid" style={{ marginBottom: '3rem' }}>
                 <div className="service-card" style={{ padding: '1.5rem', borderLeft: '4px solid var(--primary)' }}>
@@ -44,7 +57,7 @@ const Transport = () => {
                     <div style={{ fontSize: '1.5rem', fontWeight: '700', letterSpacing: '1px', marginBottom: '0.5rem' }}>DL-NGA-88214</div>
                     <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Class: B, C | Exp: 12 Oct 2028</div>
                     <div className="mt-4">
-                        <button className="btn btn-outline" style={{ width: '100%' }}>Request Renewal</button>
+                        <button className="btn btn-outline" style={{ width: '100%' }} onClick={() => handleAction('Initiating License Renewal Process...')}>Request Renewal</button>
                     </div>
                 </div>
                 
@@ -67,7 +80,7 @@ const Transport = () => {
 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                 <h3>Registered Vehicles</h3>
-                <button className="btn btn-outline" style={{ padding: '0.5rem 1rem' }}>+ Register New</button>
+                <button className="btn btn-outline" style={{ padding: '0.5rem 1rem' }} onClick={() => handleAction('Opening Vehicle Registration Portal...')}>+ Register New</button>
             </div>
             <DataTable columns={columns} data={vehicleHistory} />
 
