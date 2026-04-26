@@ -6,9 +6,9 @@ export default async function handler(req, res) {
     }
 
     try {
-        const connectionString = process.env.POSTGRES_URL || process.env.DATABASE_URL;
+        const connectionString = process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.NEON_DATABASE_URL || process.env.POSTGRES_PRISMA_URL;
         if (!connectionString) {
-            throw new Error("Missing POSTGRES_URL or DATABASE_URL environment variable.");
+            throw new Error("Missing Database URL environment variable.");
         }
         const sql = neon(connectionString);
         const { name, email, message } = req.body;
