@@ -24,7 +24,7 @@ const Dashboard = () => {
                     icon="🏛️" 
                     title="Tax & Revenue" 
                     description="Access tax portals, view statements, and complete filings." 
-                    linkTo="/taxes" 
+                    linkTo="/dashboard/taxes" 
                     linkText="Pay Taxes" 
                     badgeType="success" 
                 />
@@ -33,7 +33,7 @@ const Dashboard = () => {
                     icon="🚗" 
                     title="Transport Services" 
                     description="Apply for or renew your driver's license and vehicle registration." 
-                    linkTo="/transport" 
+                    linkTo="/dashboard/transport" 
                     linkText="Renew License" 
                 />
 
@@ -41,7 +41,7 @@ const Dashboard = () => {
                     icon="🎓" 
                     title="Education & Admissions" 
                     description="Access educational admissions, register for exams, and check results." 
-                    linkTo="/education" 
+                    linkTo="/dashboard/education" 
                     linkText="View Portal" 
                 />
 
@@ -57,7 +57,7 @@ const Dashboard = () => {
                     icon="💼" 
                     title="Business Registration" 
                     description="Register your company and manage corporate affairs seamlessly." 
-                    linkTo="/business" 
+                    linkTo="/dashboard/business" 
                     linkText="Register" 
                 />
 
@@ -65,7 +65,7 @@ const Dashboard = () => {
                     icon="🌍" 
                     title="Diaspora & Consular" 
                     description="Access consular services and diaspora initiatives abroad." 
-                    linkTo="/diaspora" 
+                    linkTo="/dashboard/diaspora" 
                     linkText="View Services" 
                 />
             </div>

@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ClerkProvider, SignedIn, SignedOut, SignIn } from '@clerk/clerk-react';
+import { ClerkProvider, SignedIn, SignedOut, SignIn, RedirectToSignIn } from '@clerk/clerk-react';
+import Landing from './pages/Landing';
 import DashboardLayout from './components/DashboardLayout';
 import Dashboard from './pages/Dashboard';
 import Identity from './pages/Identity';
@@ -31,32 +32,41 @@ function App() {
 
   return (
     <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-      <SignedIn>
-        <Router>
-          <Routes>
-            <Route path="/" element={<DashboardLayout />}>
-              <Route index element={<Dashboard />} />
-              <Route path="identity" element={<Identity />} />
-              <Route path="taxes" element={<Taxes />} />
-              <Route path="transport" element={<Transport />} />
-              <Route path="education" element={<Education />} />
-              <Route path="business" element={<Business />} />
-              <Route path="diaspora" element={<Diaspora />} />
-              <Route path="passport" element={<Passport />} />
-              <Route path="contact" element={<Contact />} />
-              <Route path="about" element={<About />} />
-              <Route path="help" element={<Help />} />
-              <Route path="admin" element={<Admin />} />
-              <Route path="*" element={<div style={{ textAlign: 'center', padding: '4rem 0' }}>Page not found or under construction.</div>} />
-            </Route>
-          </Routes>
-        </Router>
-      </SignedIn>
-      <SignedOut>
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', background: '#F8FAFC' }}>
-          <SignIn />
-        </div>
-      </SignedOut>
+      <Router>
+        <Routes>
+          {/* Public Route */}
+          <Route path="/" element={<Landing />} />
+          
+          {/* Secure Dashboard Route */}
+          <Route path="/dashboard" element={
+            <>
+              <SignedIn>
+                <DashboardLayout />
+              </SignedIn>
+              <SignedOut>
+                <RedirectToSignIn />
+              </SignedOut>
+            </>
+          }>
+            <Route index element={<Dashboard />} />
+            <Route path="identity" element={<Identity />} />
+            <Route path="taxes" element={<Taxes />} />
+            <Route path="transport" element={<Transport />} />
+            <Route path="education" element={<Education />} />
+            <Route path="business" element={<Business />} />
+            <Route path="diaspora" element={<Diaspora />} />
+            <Route path="passport" element={<Passport />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="about" element={<About />} />
+            <Route path="help" element={<Help />} />
+            <Route path="admin" element={<Admin />} />
+            <Route path="*" element={<div style={{ textAlign: 'center', padding: '4rem 0' }}>Page not found or under construction.</div>} />
+          </Route>
+
+          {/* Catch all for invalid root paths */}
+          <Route path="*" element={<div style={{ textAlign: 'center', padding: '4rem 0' }}>Page not found.</div>} />
+        </Routes>
+      </Router>
     </ClerkProvider>
   );
 }

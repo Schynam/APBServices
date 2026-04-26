@@ -10,38 +10,38 @@ const Sidebar = () => {
                 <h3>Citizen Hub</h3>
             </div>
             <nav className="sidebar-nav">
-                <NavLink to="/" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} end>
+                <NavLink to="/dashboard" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} end>
                     <span>Dashboard</span>
                 </NavLink>
-                <NavLink to="/identity" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                <NavLink to="/dashboard/identity" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                     <span>Identity (NIN)</span>
                 </NavLink>
-                <NavLink to="/taxes" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                <NavLink to="/dashboard/taxes" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                     <span>Taxes & Revenue (FIRS)</span>
                 </NavLink>
-                <NavLink to="/transport" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                <NavLink to="/dashboard/transport" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                     <span>Transport (FRSC)</span>
                 </NavLink>
-                <NavLink to="/education" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                <NavLink to="/dashboard/education" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                     <span>Education (JAMB)</span>
                 </NavLink>
-                <NavLink to="/business" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                <NavLink to="/dashboard/business" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                     <span>Business Reg</span>
                 </NavLink>
-                <NavLink to="/passport" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                <NavLink to="/dashboard/passport" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                     <span>Passport Services</span>
                 </NavLink>
-                <NavLink to="/diaspora" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                <NavLink to="/dashboard/diaspora" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                     <span>Diaspora & Consular</span>
                 </NavLink>
                 <div style={{ marginTop: 'auto', paddingTop: '2rem' }}>
-                    <NavLink to="/about" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                    <NavLink to="/dashboard/about" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                         <span>About APBServices</span>
                     </NavLink>
-                    <NavLink to="/help" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                    <NavLink to="/dashboard/help" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                         <span>Help Center & Docs</span>
                     </NavLink>
-                    <NavLink to="/contact" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                    <NavLink to="/dashboard/contact" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                         <span>Contact Us</span>
                     </NavLink>
                 </div>
