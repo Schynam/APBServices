@@ -5,17 +5,29 @@ const Identity = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (!email) return;
         
         setIsSubmitting(true);
-        // Simulate network delay for Formspree/API submission
-        setTimeout(() => {
+        try {
+            const response = await fetch('/api/waitlist', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            });
+            
+            if (response.ok) {
+                setIsSuccess(true);
+                setEmail('');
+            } else {
+                console.error('Waitlist submission failed');
+            }
+        } catch (error) {
+            console.error('Network error:', error);
+        } finally {
             setIsSubmitting(false);
-            setIsSuccess(true);
-            setEmail('');
-        }, 1500);
+        }
     };
 
     return (

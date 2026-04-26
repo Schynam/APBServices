@@ -5,15 +5,28 @@ const Contact = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
-        // Simulate API submission
-        setTimeout(() => {
+        
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+            
+            if (response.ok) {
+                setIsSuccess(true);
+                setFormData({ name: '', email: '', message: '' });
+            } else {
+                console.error('Contact submission failed');
+            }
+        } catch (error) {
+            console.error('Network error:', error);
+        } finally {
             setIsSubmitting(false);
-            setIsSuccess(true);
-            setFormData({ name: '', email: '', message: '' });
-        }, 1500);
+        }
     };
 
     return (
