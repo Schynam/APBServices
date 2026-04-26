@@ -1,11 +1,32 @@
+import { useState } from 'react';
 import StatusBadge from '../components/StatusBadge';
 
 const Education = () => {
+    const [actionMessage, setActionMessage] = useState('');
+
+    const handleAction = (message) => {
+        setActionMessage(message);
+        setTimeout(() => setActionMessage(''), 3000);
+    };
+
     return (
         <div className="animate-fade-in">
             <div className="mb-8">
-                <h1 style={{ color: 'var(--primary)' }}>Education & Admissions (JAMB)</h1>
-                <p>Access your UTME profile, check exam results, and process admissions.</p>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
+                    <div>
+                        <h1 style={{ color: 'var(--primary)', marginBottom: '0.5rem' }}>Education & Admissions (JAMB)</h1>
+                        <p style={{ color: 'var(--text-muted)' }}>Access your UTME profile, check exam results, and process admissions.</p>
+                    </div>
+                    <div style={{ display: 'flex', gap: '1rem' }}>
+                        <button className="btn btn-outline" onClick={() => handleAction('Redirecting to full UTME Profile...')}>Access UTME Profile</button>
+                        <button className="btn btn-primary" onClick={() => handleAction('Opening Result Checker portal...')}>Check New Result</button>
+                    </div>
+                </div>
+                {actionMessage && (
+                    <div className="animate-fade-in" style={{ marginTop: '1rem', padding: '0.75rem 1rem', background: 'rgba(21, 128, 61, 0.1)', color: 'var(--primary)', borderRadius: 'var(--radius-md)', border: '1px solid var(--primary)', fontSize: '0.9rem' }}>
+                        {actionMessage}
+                    </div>
+                )}
             </div>
 
             <div style={{ background: 'var(--bg-card)', padding: '2rem', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border)', marginBottom: '2rem' }}>
