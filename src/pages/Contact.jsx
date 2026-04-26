@@ -95,9 +95,9 @@ const Contact = () => {
                         <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>🏢</div>
                         <h4 style={{ marginBottom: '0.25rem' }}>Headquarters</h4>
                         <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-                            APB Citizen Hub Tower,<br/>
-                            Victoria Island, Lagos,<br/>
-                            Nigeria
+                            APB Services<br/>
+                            Dallas-Fort Worth (DFW),<br/>
+                            Texas, USA
                         </p>
                     </div>
                 </div>
