@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     }
 
     try {
-        const connectionString = process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.NEON_DATABASE_URL || process.env.POSTGRES_PRISMA_URL;
+        const connectionString = process.env.store_POSTGRES_URL || process.env.store_DATABASE_URL || process.env.DATABASE_URL || process.env.POSTGRES_URL;
         if (!connectionString) {
             const dbKeys = Object.keys(process.env).filter(k => k.includes('DATABASE') || k.includes('POSTGRES') || k.includes('NEON') || k.includes('URL'));
             throw new Error(`Missing Database URL variable. Available DB-related keys in Vercel: ${dbKeys.join(', ') || 'None found!'}`);
