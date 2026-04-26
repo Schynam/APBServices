@@ -15,7 +15,7 @@ import Help from './pages/Help';
 import Admin from './pages/Admin';
 import './App.css';
 
-const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+const PUBLISHABLE_KEY = "pk_test_YWN0aXZlLWZyb2ctMjUuY2xlcmsuYWNjb3VudHMuZGV2JA";
 
 function App() {
   if (!PUBLISHABLE_KEY) {
