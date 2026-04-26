@@ -1,10 +1,13 @@
 import ServiceCard from '../components/ServiceCard';
+import { useUser } from '@clerk/clerk-react';
 
 const Dashboard = () => {
+    const { user } = useUser();
+    
     return (
         <>
             <div className="mb-8">
-                <h1>Welcome, Peter</h1>
+                <h1>Welcome, {user?.firstName || 'Citizen'}</h1>
                 <p>Access your federal services and applications.</p>
             </div>
 
