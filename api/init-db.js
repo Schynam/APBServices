@@ -33,6 +33,35 @@ export default async function handler(req, res) {
             );
         `;
 
+        // Create user_taxes table
+        await sql`
+            CREATE TABLE IF NOT EXISTS user_taxes (
+                id SERIAL PRIMARY KEY,
+                clerk_user_id VARCHAR(255) NOT NULL,
+                ref_id VARCHAR(50) NOT NULL,
+                tax_year VARCHAR(4) NOT NULL,
+                tax_type VARCHAR(100) NOT NULL,
+                amount VARCHAR(50) NOT NULL,
+                status VARCHAR(50) NOT NULL,
+                due_date VARCHAR(50) NOT NULL,
+                created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+            );
+        `;
+
+        // Create user_vehicles table
+        await sql`
+            CREATE TABLE IF NOT EXISTS user_vehicles (
+                id SERIAL PRIMARY KEY,
+                clerk_user_id VARCHAR(255) NOT NULL,
+                plate_number VARCHAR(50) NOT NULL,
+                make_model VARCHAR(100) NOT NULL,
+                year VARCHAR(4) NOT NULL,
+                status VARCHAR(50) NOT NULL,
+                expiration VARCHAR(50) NOT NULL,
+                created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+            );
+        `;
+
         return res.status(200).json({ success: true, message: 'Database tables initialized successfully!' });
     } catch (error) {
         return res.status(500).json({ error: error.message });

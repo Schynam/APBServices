@@ -1,25 +1,39 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useUser } from '@clerk/clerk-react';
 import PaymentModal from '../components/PaymentModal';
 import DataTable from '../components/DataTable';
 import StatusBadge from '../components/StatusBadge';
 
 const Taxes = () => {
+    const { user } = useUser();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [hasPaid, setHasPaid] = useState(false);
     const [actionMessage, setActionMessage] = useState('');
+    const [taxHistory, setTaxHistory] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    const taxHistory = [
-        { id: 'TX-8921', year: '2025', type: 'Personal Income Tax', amount: '₦450,000', status: 'Paid', date: '2025-04-12' },
-        { id: 'TX-7432', year: '2024', type: 'Personal Income Tax', amount: '₦420,000', status: 'Paid', date: '2024-03-28' },
-        { id: 'TX-1109', year: '2026', type: 'Property Tax', amount: '₦125,000', status: hasPaid ? 'Paid' : 'Pending', date: 'Due 2026-06-01' },
-    ];
+    useEffect(() => {
+        if (user) {
+            fetch(`/api/user-data?type=taxes&clerkId=${user.id}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (Array.isArray(data)) {
+                        setTaxHistory(data);
+                        const pending = data.find(t => t.status === 'Pending');
+                        if (!pending) setHasPaid(true);
+                    }
+                })
+                .catch(err => console.error(err))
+                .finally(() => setIsLoading(false));
+        }
+    }, [user]);
 
     const columns = [
-        { header: 'Reference ID', accessor: 'id' },
-        { header: 'Tax Year', accessor: 'year' },
-        { header: 'Tax Type', accessor: 'type' },
+        { header: 'Reference ID', accessor: 'ref_id' },
+        { header: 'Tax Year', accessor: 'tax_year' },
+        { header: 'Tax Type', accessor: 'tax_type' },
         { header: 'Amount', accessor: 'amount' },
-        { header: 'Date', accessor: 'date' },
+        { header: 'Date', accessor: 'due_date' },
         { header: 'Status', accessor: 'status', render: (status) => <StatusBadge status={status} /> },
     ];
 

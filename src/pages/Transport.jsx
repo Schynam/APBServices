@@ -1,23 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useUser } from '@clerk/clerk-react';
 import PaymentModal from '../components/PaymentModal';
 import DataTable from '../components/DataTable';
 import StatusBadge from '../components/StatusBadge';
 
 const Transport = () => {
+    const { user } = useUser();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [hasPaid, setHasPaid] = useState(false);
     const [actionMessage, setActionMessage] = useState('');
+    const [vehicleHistory, setVehicleHistory] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    const vehicleHistory = [
-        { plate: 'ABC-123-XY', make: 'Toyota Camry', year: '2019', status: 'Active', exp: '2027-01-15' },
-        { plate: 'LND-994-AZ', make: 'Honda CR-V', year: '2015', status: 'Expired', exp: '2025-11-20' },
-    ];
+    useEffect(() => {
+        if (user) {
+            fetch(`/api/user-data?type=vehicles&clerkId=${user.id}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (Array.isArray(data)) {
+                        setVehicleHistory(data);
+                    }
+                })
+                .catch(err => console.error(err))
+                .finally(() => setIsLoading(false));
+        }
+    }, [user]);
 
     const columns = [
-        { header: 'Plate Number', accessor: 'plate', render: (plate) => <span style={{ fontWeight: '600', letterSpacing: '1px' }}>{plate}</span> },
-        { header: 'Make & Model', accessor: 'make' },
+        { header: 'Plate Number', accessor: 'plate_number', render: (plate) => <span style={{ fontWeight: '600', letterSpacing: '1px' }}>{plate}</span> },
+        { header: 'Make & Model', accessor: 'make_model' },
         { header: 'Year', accessor: 'year' },
-        { header: 'Expiration', accessor: 'exp' },
+        { header: 'Expiration', accessor: 'expiration' },
         { header: 'Status', accessor: 'status', render: (status) => <StatusBadge status={status} /> },
         { header: 'Action', accessor: 'action', render: () => <button className="btn btn-outline" style={{ padding: '0.3rem 0.8rem', fontSize: '0.8rem' }}>Manage</button> }
     ];
