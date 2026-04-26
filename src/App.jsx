@@ -12,6 +12,7 @@ import Diaspora from './pages/Diaspora';
 import Contact from './pages/Contact';
 import About from './pages/About';
 import Help from './pages/Help';
+import Admin from './pages/Admin';
 import './App.css';
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -45,6 +46,7 @@ function App() {
               <Route path="contact" element={<Contact />} />
               <Route path="about" element={<About />} />
               <Route path="help" element={<Help />} />
+              <Route path="admin" element={<Admin />} />
               <Route path="*" element={<div style={{ textAlign: 'center', padding: '4rem 0' }}>Page not found or under construction.</div>} />
             </Route>
           </Routes>
