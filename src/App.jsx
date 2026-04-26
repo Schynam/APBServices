@@ -36,22 +36,4 @@ function App() {
     </Router>
   );
 }
-        <Route path="/" element={<DashboardLayout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="identity" element={<Identity />} />
-          <Route path="taxes" element={<Taxes />} />
-          <Route path="transport" element={<Transport />} />
-          <Route path="education" element={<Education />} />
-          <Route path="business" element={<Business />} />
-          <Route path="diaspora" element={<Diaspora />} />
-          <Route path="passport" element={<Passport />} />
-          <Route path="contact" element={<Contact />} />
-          {/* Catch all for unbuilt pages */}
-          <Route path="*" element={<div style={{ textAlign: 'center', padding: '4rem 0' }}>Page not found or under construction.</div>} />
-        </Route>
-      </Routes>
-    </Router>
-  );
-}
-
 export default App;
