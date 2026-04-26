@@ -6,6 +6,7 @@ import StatusBadge from '../components/StatusBadge';
 const Taxes = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [hasPaid, setHasPaid] = useState(false);
+    const [actionMessage, setActionMessage] = useState('');
 
     const taxHistory = [
         { id: 'TX-8921', year: '2025', type: 'Personal Income Tax', amount: '₦450,000', status: 'Paid', date: '2025-04-12' },
@@ -27,15 +28,26 @@ const Taxes = () => {
         if (success) setHasPaid(true);
     };
 
+    const handleAction = (message) => {
+        setActionMessage(message);
+        setTimeout(() => setActionMessage(''), 3000);
+    };
+
     return (
         <div className="animate-fade-in">
-            <div className="mb-8" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div className="mb-8" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
                 <div>
-                    <h1 style={{ color: 'var(--primary)' }}>Taxes & Revenue (FIRS)</h1>
-                    <p>Manage your tax filings, view history, and make payments securely.</p>
+                    <h1 style={{ color: 'var(--primary)', marginBottom: '0.5rem' }}>Taxes & Revenue (FIRS)</h1>
+                    <p style={{ color: 'var(--text-muted)' }}>Manage your tax filings, view history, and make payments securely.</p>
                 </div>
-                <button className="btn btn-primary">File New Return</button>
+                <button className="btn btn-primary" onClick={() => handleAction('Opening FIRS Tax Filing Portal...')}>File New Return</button>
             </div>
+
+            {actionMessage && (
+                <div className="animate-fade-in" style={{ marginBottom: '2rem', padding: '0.75rem 1rem', background: 'rgba(21, 128, 61, 0.1)', color: 'var(--primary)', borderRadius: 'var(--radius-md)', border: '1px solid var(--primary)', fontSize: '0.9rem' }}>
+                    {actionMessage}
+                </div>
+            )}
 
             <div className="services-grid" style={{ marginBottom: '3rem' }}>
                 <div className="service-card" style={{ padding: '1.5rem' }}>
