@@ -89,7 +89,7 @@ const Contact = () => {
                         <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>📧</div>
                         <h4 style={{ marginBottom: '0.25rem' }}>Email Support</h4>
                         <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>For general inquiries and assistance.</p>
-                        <a href="mailto:support@apbservices.org" style={{ fontWeight: '600', color: 'var(--primary)' }}>support@apbservices.org</a>
+                        <a href="mailto:help@apbservices.org" style={{ fontWeight: '600', color: 'var(--primary)' }}>help@apbservices.org</a>
                     </div>
                     <div style={{ background: 'var(--secondary)', padding: '1.5rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border)' }}>
                         <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>🏢</div>
