@@ -8,6 +8,7 @@ import Education from './pages/Education';
 import Business from './pages/Business';
 import Passport from './pages/Passport';
 import Diaspora from './pages/Diaspora';
+import Contact from './pages/Contact';
 import './App.css';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="business" element={<Business />} />
           <Route path="diaspora" element={<Diaspora />} />
           <Route path="passport" element={<Passport />} />
+          <Route path="contact" element={<Contact />} />
           {/* Catch all for unbuilt pages */}
           <Route path="*" element={<div style={{ textAlign: 'center', padding: '4rem 0' }}>Page not found or under construction.</div>} />
         </Route>
